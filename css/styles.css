@@ -1,0 +1,288 @@
+/*--- Universal Styles ---*/
+
+body {
+    background-color: #346b31;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+article,
+label {
+    color: white;
+}
+
+.alert p {
+    color: inherit;
+    margin-bottom: 0;
+}
+
+nav {
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+footer {
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+footer p {
+    background-color: #489144;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+footer a {
+    text-decoration: underline;
+    color: white;
+}
+
+footer a:hover {
+    text-decoration: dotted;
+    color: #FFB300;
+}
+
+.main {
+    margin-bottom: 1rem;
+}
+
+.card {
+    background-color: #489144;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.list-group {
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.list-group .list-group-item {
+    background-color: #489144;
+    color: white;
+    border: 3px solid rgba(0,0,0,.125);
+}
+
+.list-group .list-group-item.active {
+    color: #346b31;
+    border-color: #FFB300;
+    font-weight: 700;
+}
+
+.card.white, .list-group .list-group-item.active {
+    background-color: white;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.card.white p,
+.card.white h1,
+.card.white h5,
+.card.white h6,
+.card.white small {
+    color: #346b31;
+}
+
+.card-expendable-icon {
+    color: white;
+    background-color: #346b31;
+    border-radius: 8px;
+}
+
+.card-expendable {
+    cursor: pointer;
+}
+
+.logout {
+    font-size: 18px;
+}
+
+.danger, .logout {
+    background-color: red !important;
+    color: white !important;
+}
+
+/*--- index.php Styles ---*/
+
+.splash-jumbo {
+    background-color: #489144;
+}
+
+.card p {
+    margin-bottom: 0;
+}
+
+.card.white .counter {
+    text-align: center;
+}
+
+.feature-card-body {
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 48px;
+}
+
+
+/*--- admin_login.php Rules ---*/
+
+.full-field {
+    width: 100%;
+}
+
+.full-btn {
+    width: 100%;
+}
+
+
+/*--- course_info.php Rules ---*/
+
+.course-meta {
+    display: flex;
+}
+
+.course-other {
+    align-self: flex-end;
+}
+
+.course-register,
+#search-btn {
+    width: 100%;
+    text-align: center;
+    display: inherit;
+}
+
+#search-text {
+    width: 100%;
+}
+
+/*--- Admin Styles ---*/
+
+.admin-username {
+    color: black;
+}
+
+#expendable {
+    display: none;
+    opacity: 0;
+    margin-bottom: 0;
+}
+
+.fliter-card {
+    transition-duration: 1000ms;
+}
+
+.list-controls {
+    align-items: center;
+    text-align: center;
+}
+
+/*--- Custom element Styles ---*/
+
+.alert {
+    border-radius: 8px;
+}
+
+.custom-btn {
+    border-radius: 4px;
+    background-color: #FFC107;
+    color: black;
+    padding: 0.75rem;
+    border: none;
+    transition-duration: 0.25s;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+    line-height: normal;
+    text-align: center;
+}
+
+.custom-btn:hover {
+    text-decoration: none;
+    color: black;
+    background-color: #FFB300;
+    box-shadow: none;
+}
+
+.custom-btn:active {
+    box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.nav-btn {
+    padding: 0.375rem 0.75rem !important;
+    display: inline-flex;
+}
+
+.custom-input {
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+    padding: 0.75rem;
+    border: none;
+    transition-duration: 0.25s;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+    line-height: normal;
+    height: 43px;
+}
+
+.custom-input:hover {
+    text-decoration: none;
+    box-shadow: none;
+}
+
+.custom-input:focus {
+    text-decoration: none;
+    box-shadow: inset 0px 3px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.card-columns .card {
+    margin-bottom: 1rem !important;
+}
+
+.modal-title {
+    color: black;
+}
+
+.modal-body iframe {
+    width: 100%;
+}
+
+@media only screen and (max-width: 1199px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .card-columns {
+        column-count: 1;
+    }
+}
+
+
+/*--- Animation properties ---*/
+
+.stagger {
+    top: 250px;
+    opacity: 0;
+}
+
+.slidein-right {
+    right: 250px;
+    opacity: 0;
+}
+
+.slidein-left {
+    left: 250px;
+    opacity: 0;
+}
+
+.slidein-up {
+    position: relative;
+    top: 250px;
+    opacity: 0;
+}
