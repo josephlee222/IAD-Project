@@ -6,7 +6,6 @@ $(document).ready(function() {
             targets: '.slidein-right',
             right: 0,
             opacity: 1,
-            //delay: anime.stagger(100)
         });
     }
 
@@ -15,7 +14,6 @@ $(document).ready(function() {
             targets: '.slidein-left',
             left: 0,
             opacity: 1,
-            //delay: anime.stagger(100)
         });
     }
 
@@ -24,7 +22,6 @@ $(document).ready(function() {
             targets: '.slidein-up',
             top: 0,
             opacity: 1,
-            //delay: anime.stagger(100)
         });
     }
 })

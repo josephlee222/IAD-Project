@@ -2,30 +2,45 @@
     <?php
     include_once "connect.php";
     include_once "auth.php";
+
+    $deleted = false;
     $show_confirm = false;
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST["delete-btn"])) {
-
-        }
-    }
-
-    if (isset($_GET["id"])) {
-        $search_id = $_GET["id"];
-        $sql = "SELECT * FROM registrations WHERE id=" . $search_id;
-        $result = mysqli_query($db_connect, $sql);
-
-        if (!$result) {
-            $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
-        } else {
-            if (mysqli_num_rows($result) > 0) {
-                $show_confirm = true;
+            $delete_id = $_POST["delete-id"];
+            $sql = "DELETE FROM registrations WHERE id=" . $delete_id;
+            if (!mysqli_query($db_connect, $sql)) {
+                $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
             } else {
-                $error = "Record does not exist. Please try again";
+                if (mysqli_affected_rows($db_connect) > 0) {
+                    $success = "Delete successful: " . mysqli_affected_rows($db_connect) . " entry affected.";
+                    $deleted = true;
+                }
             }
             
+
         }
     }
+    if (!$deleted) {
+        if (isset($_GET["id"])) {
+            $search_id = $_GET["id"];
+            $sql = "SELECT * FROM registrations WHERE id=" . $search_id;
+            $result = mysqli_query($db_connect, $sql);
+
+            if (!$result) {
+                $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
+            } else {
+                if (mysqli_num_rows($result) > 0) {
+                    $show_confirm = true;
+                } else {
+                    $error = "Record does not exist. Please try again";
+                }
+                
+            }
+        }
+    }
+    
     ?>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -73,6 +88,17 @@
                 echo "
                 <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
                     ". $error . "
+                    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                        <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>
+                ";
+            }
+
+            if (isset($success)) {
+                echo "
+                <div class='alert alert-success alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
+                    ". $success . "
                     <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                         <span aria-hidden='true'>&times;</span>
                     </button>
