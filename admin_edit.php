@@ -71,7 +71,8 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav mr-auto">
-                        
+
+                    </ul>
                     <div class=" mt-3 mt-md-0 d-flex">
                         <p class="my-auto mr-3 admin-username"><?php echo $cookie_username?></p>
                         <a class="custom-btn nav-btn btn logout material-icons">power_settings_new</a>
