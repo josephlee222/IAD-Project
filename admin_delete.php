@@ -64,15 +64,7 @@
                 </button>
                 <div class="collapse navbar-collapse " id="navbarNav">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="course_info.php">Courses</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="./admin_login.php">Admin</a>
-                        </li>
+                        
                     </ul>
                     <div class=" mt-3 mt-md-0 d-flex">
                         <p class="my-auto mr-3 admin-username"><?php echo $cookie_username?></p>
