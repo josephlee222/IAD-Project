@@ -126,7 +126,7 @@
                                         <form class="container-fluid p-0 mb-0">
                                             <div class="row">
                                                 <div class="col-md-9 mb-3 mb-md-0">
-                                                    <input class="custom-input w-100" type="number" name="id" id="delete-id" placeholder="ID to delete">
+                                                    <input class="custom-input w-100" type="number" name="id" id="delete-id" placeholder="ID to delete" value="<?php if (isset($_GET['id'])) {echo $_GET['id'];}?>">
                                                 </div>
                                                 <div class="col-md-3">
                                                     <input class="custom-btn w-100" type="submit" name="delete-search-btn" id="delete-search-btn" value="Find by ID">
