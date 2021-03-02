@@ -131,7 +131,11 @@
                                                     if (mysqli_num_rows($result_courses) > 0) {
                                                         for ($i = 0; mysqli_num_rows($result_courses) > $i; $i++) {
                                                             $row = mysqli_fetch_assoc($result_courses);
-                                                            echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
+                                                            if ($row['course_name'] == $_GET["filter-course"]) {
+                                                                echo "<option value='" . $row['course_name'] . "' selected>" . $row['course_name'] . "</option>";
+                                                            } else {
+                                                                echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
+                                                            }
                                                         }
                                                     }
                                                     ?>
@@ -139,11 +143,11 @@
                                             </div>
                                             <div class="col-lg-4 mb-3 mb-lg-0">
                                                 <label for="fliter-date">Filter By Date</label>
-                                                <input id="filter-date" name="filter-date" class="custom-input w-100" type="date" placeholder="Fliter By Date">
+                                                <input id="filter-date" name="filter-date" class="custom-input w-100" type="date" placeholder="Fliter By Date" value="<?php if (isset($_GET['filter-date'])) {echo $_GET['filter-date'];}?>">
                                             </div>
                                             <div class="col-lg-4">
                                                 <label for="fliter-name">Filter By Name</label>
-                                                <input id="filter-name" name="filter-name" class="custom-input w-100" type="text" placeholder="Fliter By Name">
+                                                <input id="filter-name" name="filter-name" class="custom-input w-100" type="text" placeholder="Fliter By Name" value="<?php if (isset($_GET['filter-name'])) {echo $_GET['filter-name'];}?>">
                                             </div>
                                         </div>
                                         <div class="row mb-0 mt-3">
