@@ -111,8 +111,9 @@
                     <!-- Sidebar navigation -->
                     <div class="list-group">
                         <a href="./admin_view_all.php" class="list-group-item list-group-item-action">View Registrations</a>
-                        <a href="#" class="list-group-item list-group-item-action">Add Registrations</a>
-                        <a href="#" class="list-group-item list-group-item-action active">Delete Registrations</a>
+                        <a href="./admin_add.php" class="list-group-item list-group-item-action">Add Registration</a>
+                        <a href="./admin_edit.php" class="list-group-item list-group-item-action">Edit Registration</a>
+                        <a href="#" class="list-group-item list-group-item-action active">Delete Registration</a>
                     </div>
                 </div>
                 <div class="col-lg-9">
