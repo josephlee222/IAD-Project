@@ -1,12 +1,46 @@
 <html>
     <?php
+    //Database connection
     include_once "connect.php";
 
+    //To check whether an existing user is logged in and should be autometically redirected to admin dashboard
+    if (isset($_COOKIE["session_username"]) && isset($_COOKIE["session_password"])) {
+        $cookie_username = $_COOKIE["session_username"];
+        $cookie_password = $_COOKIE["session_password"];
+        $sql = "SELECT * FROM users WHERE username='" . $cookie_username . "'";
+
+        $cookie_result = mysqli_query($db_connect, $sql);
+        if (!$cookie_result) {
+            //In case of SQL error
+            $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
+        } else {
+            if (mysqli_num_rows($cookie_result) > 0) {
+                //Account Exists
+                $row = mysqli_fetch_assoc($cookie_result);
+                if ($cookie_password == $row["password"]) {
+                    //correct password, redirect to admin dashboard
+                    header("Location: ./admin_view_all.php");
+                } else {
+                    //wrong password, wipe cache and show error
+                    setcookie("session_username", "", time() - 3600);
+                    setcookie("session_password", "", time() - 3600);
+                    $error = "Invaild session, please login again";
+                }
+            } else {
+                //Account does not exist, wipe cookie
+                setcookie("session_username", "", time() - 3600);
+                setcookie("session_password", "", time() - 3600);
+            }
+        }
+    }
+
+    //Gets error text that returns from other admin pages and show it (Invaild session etc...)
     if (isset($_GET["error-text"])) {
         $error = $_GET["error-text"];
     }
-
+    //If a form via POST is received
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        //If the login button is clicked
         if (isset($_POST["login-btn"])) {
             //Auth user here
             $login_username = $_POST["login-username"];
@@ -16,16 +50,18 @@
             $result = mysqli_query($db_connect, $sql);
 
             if (!$result) {
-                echo "<script type='text/javascript'>alert('" . mysqli_error($db_connect) . "');</script>";
+                //In case of SQL error
+                $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
             } else {
                 if (mysqli_num_rows($result) > 0) {
                     //Got user
                     $row = mysqli_fetch_assoc($result);
                     if ($login_password == $row["password"]) {
                         //Login success, redirect (Current is placeholder)
-                        $error = "Successful login!";
+                        //$error = "Successful login!";
                         setcookie("session_username", $login_username);
                         setcookie("session_password", $login_password);
+                        //Redirect to admin page
                         header("Location: ./admin_view_all.php");
                     } else {
                         //Wrong password
@@ -77,6 +113,7 @@
     </nav>
     <div class="container main">
         <?php
+        //If an error occurs, this part triggers showing the alert with the error code in it
         if (isset($error)) {
             echo "
             <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
