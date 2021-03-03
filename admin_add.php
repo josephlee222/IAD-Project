@@ -70,7 +70,7 @@
             </div>
         </nav>
 
-        <div class="container main">
+        <div class="container">
             <?php
             //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {
@@ -119,23 +119,23 @@
                                             <div class="row mb-3">
                                                 <div class="col-lg-6 mb-3 mb-lg-0">
                                                     <label for="register-name">Name</label>
-                                                    <input required type="text" class="custom-input full-field" id="register-name" name="register-name" placeholder="Your name">
+                                                    <input required type="text" class="custom-input w-100" id="register-name" name="register-name" placeholder="Your name">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="register-phone">Phone</label>
-                                                    <input required type="tel" class="custom-input full-field" id="register-phone" name="register-phone" placeholder="Phone number">
+                                                    <input required type="tel" class="custom-input w-100" id="register-phone" name="register-phone" placeholder="Phone number">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col">
                                                     <label for="register-email">E-mail</label>
-                                                    <input required type="email" class="custom-input full-field" id="register-email" name="register-email" placeholder="Email address">
+                                                    <input required type="email" class="custom-input w-100" id="register-email" name="register-email" placeholder="Email address">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col-lg-6 mb-3 mb-lg-0">
                                                     <label for="register-course">Course</label>
-                                                    <select required class="custom-input full-field" name="register-course" id="register-course">
+                                                    <select required class="custom-input w-100" name="register-course" id="register-course">
                                                         <?php
                                                             //Check whether there is more than 1 course
                                                             if (mysqli_num_rows($result) > 0) {
@@ -153,12 +153,12 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="register-date">Date</label>
-                                                    <input required type="date" class="custom-input full-field" id="register-date" name="register-date" placeholder="Attending date">
+                                                    <input required type="date" class="custom-input w-100" id="register-date" name="register-date" placeholder="Attending date">
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col">
-                                                    <input type="submit" class="custom-btn full-btn mb-0" id="register-btn" name="register-btn" value="Register">
+                                                    <input type="submit" class="custom-btn w-100 mb-0" id="register-btn" name="register-btn" value="Register">
                                                 </div>
                                             </div>
                                         </form>
@@ -170,5 +170,8 @@
                 </div>
             </div>
         </div>
+        <footer class="my-5">
+            <p>Innovate Training - 2021</p>
+        </footer>
     </body>
 </html>

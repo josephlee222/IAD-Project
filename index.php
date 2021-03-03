@@ -51,7 +51,7 @@
             </div>
         </div>
     </nav>
-    <div class="container main">
+    <div class="container">
         <div class="row splash">
             <div class="col">
                 <header class="jumbotron splash-jumbo mb-0 mt-3">

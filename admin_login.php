@@ -111,7 +111,7 @@
             </div>
         </div>
     </nav>
-    <div class="container main">
+    <div class="container">
         <?php
         //If an error occurs, this part triggers showing the alert with the error code in it
         if (isset($error)) {
@@ -132,13 +132,13 @@
                         <form method="post">
                             <div class="mb-3">
                                 <label for="login-username"><b>Username</b></label>
-                                <input type="text" id="login-username" name="login-username" class="custom-input full-field" placeholder="Username" required>
+                                <input type="text" id="login-username" name="login-username" class="custom-input w-100" placeholder="Username" required>
                             </div>
                             <div class="mb-3">
                                 <label for="login-password"><b>Password</b></label>
-                                <input type="password" id="login-password" name="login-password" class="custom-input full-field" placeholder="Password" required>
+                                <input type="password" id="login-password" name="login-password" class="custom-input w-100" placeholder="Password" required>
                             </div>
-                            <input type="submit" class="custom-btn full-btn mb-0" id="login-btn" name="login-btn" value="Login">
+                            <input type="submit" class="custom-btn w-100 mb-0" id="login-btn" name="login-btn" value="Login">
                         </form>
                     </div>
                 </div>
@@ -168,7 +168,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <iframe width="470" height="315" src="https://www.youtube.com/embed/XeK_I0XQW6U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe class="w-100" width="470" height="315" src="https://www.youtube.com/embed/XeK_I0XQW6U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="modal-footer">
                 <button type="button" class="custom-btn" data-dismiss="modal">Close</button>

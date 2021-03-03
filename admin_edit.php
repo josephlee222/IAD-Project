@@ -89,7 +89,7 @@
             </div>
         </nav>
 
-        <div class="container main">
+        <div class="container">
             <?php
             //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {
@@ -162,23 +162,23 @@
                                                 <div class="row mb-3">
                                                     <div class="col-lg-6 mb-3 mb-lg-0">
                                                         <label for="edit-name">Name</label>
-                                                        <input required type="text" class="custom-input full-field" id="edit-name" name="edit-name" placeholder="Your name" value="' . $row['name'] . '">
+                                                        <input required type="text" class="custom-input w-100" id="edit-name" name="edit-name" placeholder="Your name" value="' . $row['name'] . '">
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="edit-phone">Phone</label>
-                                                        <input required type="tel" class="custom-input full-field" id="edit-phone" name="edit-phone" placeholder="Phone number" value="' . $row['contact'] . '">
+                                                        <input required type="tel" class="custom-input w-100" id="edit-phone" name="edit-phone" placeholder="Phone number" value="' . $row['contact'] . '">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col">
                                                         <label for="edit-email">E-mail</label>
-                                                        <input required type="email" class="custom-input full-field" id="edit-email" name="edit-email" placeholder="Email address" value="' . $row['email'] . '">
+                                                        <input required type="email" class="custom-input w-100" id="edit-email" name="edit-email" placeholder="Email address" value="' . $row['email'] . '">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">
                                                     <div class="col-lg-6 mb-3 mb-lg-0">
                                                         <label for="edit-course">Course</label>
-                                                        <select required class="custom-input full-field" name="edit-course" id="edit-course">
+                                                        <select required class="custom-input w-100" name="edit-course" id="edit-course">
                                                             '; 
                                                             if (mysqli_num_rows($courses_result) > 0) {
                                                                 for ($i = 0; mysqli_num_rows($courses_result) > $i; $i++) {
@@ -197,19 +197,19 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="edit-date">Date</label>
-                                                        <input required type="date" class="custom-input full-field" id="edit-date" name="edit-date" placeholder="Attending date" value="' . $row['register_date'] . '">
+                                                        <input required type="date" class="custom-input w-100" id="edit-date" name="edit-date" placeholder="Attending date" value="' . $row['register_date'] . '">
                                                     </div>
                                                 </div>
                                                 <hr>
                                                 <div class="row mb-3">
                                                     <div class="col">
                                                         <label for="edit-id">Editing for ID</label>
-                                                        <input required readonly type="number" class="custom-input full-field" id="edit-id" name="edit-id" placeholder="ID" value="' . $row['id'] . '">
+                                                        <input required readonly type="number" class="custom-input w-100" id="edit-id" name="edit-id" placeholder="ID" value="' . $row['id'] . '">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <input type="submit" class="custom-btn full-btn mb-0" id="edit-btn" name="edit-btn" value="Edit Registration">
+                                                        <input type="submit" class="custom-btn w-100 mb-0" id="edit-btn" name="edit-btn" value="Edit Registration">
                                                     </div>
                                                 </div>
                                             </form>

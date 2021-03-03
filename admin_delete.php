@@ -96,7 +96,7 @@
             </div>
         </nav>
 
-        <div class="container main">
+        <div class="container">
             <?php
             //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {

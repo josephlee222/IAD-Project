@@ -58,7 +58,7 @@
             </div>
         </nav>
 
-        <div class="container main">
+        <div class="container">
             <?php
             //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {
@@ -91,7 +91,7 @@
                             <div class="container-fluid p-0">
                                 <form class="row mb-0">
                                     <div class="col-md-9 mb-3 mb-md-0">
-                                        <input type="text" class="custom-input" id="search-text" name="search-text" placeholder="Search courses" value="<?php if (isset($_GET["search-text"])) {echo $_GET["search-text"];}?>">
+                                        <input type="text" class="custom-input w-100" id="search-text" name="search-text" placeholder="Search courses" value="<?php if (isset($_GET["search-text"])) {echo $_GET["search-text"];}?>">
                                     </div>
                                     <div class="col-md-3">
                                         <input type="submit" class="custom-btn" id="search-btn" value="Search">
@@ -118,7 +118,7 @@
                                         <div class="card white animate-enlarge stagger course-card">
                                             <div class="card-body">
                                                 <h6 class="card-title">' . $row["course_name"] . '</h6>
-                                                <div class="course-meta mb-2">
+                                                <div class="d-flex mb-2">
                                                     <h5 class="m-0"><strong>$' . $row["price"] . '</strong></h5>
                                                     <small class="course-other ml-2">' . $row["course_duration"] . ' Days / ' . $row["seats"] . ' Seats</small>
                                                 </div>

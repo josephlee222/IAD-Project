@@ -51,10 +51,6 @@ footer a:hover {
     color: #FFB300;
 }
 
-.main {
-    margin-bottom: 1rem;
-}
-
 .card {
     background-color: #489144;
     border-radius: 8px;
@@ -133,23 +129,7 @@ footer a:hover {
     font-size: 48px;
 }
 
-
-/*--- admin_login.php Rules ---*/
-
-.full-field {
-    width: 100%;
-}
-
-.full-btn {
-    width: 100%;
-}
-
-
 /*--- course_info.php Rules ---*/
-
-.course-meta {
-    display: flex;
-}
 
 .course-other {
     align-self: flex-end;
@@ -160,10 +140,6 @@ footer a:hover {
     width: 100%;
     text-align: center;
     display: inherit;
-}
-
-#search-text {
-    width: 100%;
 }
 
 /*--- Admin Styles ---*/
@@ -179,7 +155,7 @@ footer a:hover {
 }
 
 .fliter-card {
-    transition-duration: 1000ms;
+    transition-duration: 1s;
 }
 
 .list-controls {
@@ -251,10 +227,6 @@ footer a:hover {
     color: black;
 }
 
-.modal-body iframe {
-    width: 100%;
-}
-
 @media only screen and (max-width: 1199px) {
     .card-columns {
         column-count: 2;
@@ -270,7 +242,8 @@ footer a:hover {
 
 /*--- Animation properties ---*/
 
-.stagger {
+.stagger,
+.slidein-up {
     top: 250px;
     opacity: 0;
 }
@@ -287,6 +260,4 @@ footer a:hover {
 
 .slidein-up {
     position: relative;
-    top: 250px;
-    opacity: 0;
 }
