@@ -1,20 +1,27 @@
 <html>
     <?php
+    //Import connection and account checker
     include_once "connect.php";
     include_once "auth.php";
 
+    //If a form via POST method is received
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        //If the register button is clicked
         if (isset($_POST["register-btn"])) {
+            //Collect form details
             $register_name = $_POST["register-name"];
             $register_phone = $_POST["register-phone"];
             $register_email = $_POST["register-email"];
             $register_course = $_POST["register-course"];
             $register_date = $_POST["register-date"];
 
+            //Add new registration details
             $sql = "INSERT INTO registrations (name, course, email, contact, register_date) VALUES ('" . $register_name . "', '" . $register_course . "', '" . $register_email . "', " . $register_phone . ", '" . $register_date . "' )";
             if (!mysqli_query($db_connect, $sql)) {
+                //In case of SQL error
                 $error = "mySQL query failed: " . mysqli_error($db_connect);
             } else {
+                //Registration successful, show success message
                 $success = "
                     Register successful done.
                 ";
@@ -22,10 +29,12 @@
         }
     }
 
+    //Get the list of courses avaliable for registration
     $sql = "SELECT course_name FROM courses";
     $result = mysqli_query($db_connect, $sql);
     
     if (!$result) {
+        //In case of SQL error
         $error = "mySQL query failed: " . mysqli_error($db_connect);
     }
     ?>
@@ -63,6 +72,7 @@
 
         <div class="container main">
             <?php
+            //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {
                 echo "
                 <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -74,6 +84,7 @@
                 ";
             }
 
+            //If a success occurs, this part triggers showing the alert with the success message in it
             if (isset($success)) {
                 echo "
                 <div class='alert alert-success alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -126,12 +137,15 @@
                                                     <label for="register-course">Course</label>
                                                     <select required class="custom-input full-field" name="register-course" id="register-course">
                                                         <?php
+                                                            //Check whether there is more than 1 course
                                                             if (mysqli_num_rows($result) > 0) {
                                                                 for ($i = 1; mysqli_num_rows($result) >= $i; $i++) {
+                                                                    //print all avaliable courses
                                                                     $row = mysqli_fetch_assoc($result);
                                                                     echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
                                                                 }
                                                             } else {
+                                                                //If no courses are avaliable, show a disabled option
                                                                 echo "<option disabled>No courses avaliable</option>";
                                                             }
                                                         ?>

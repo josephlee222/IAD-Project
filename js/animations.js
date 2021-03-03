@@ -1,6 +1,7 @@
 //Common animation classes for all pages with animations
 
 $(document).ready(function() {
+    //SlideIn right animation
     if ($(".slidein-right").length) {
         anime({
             targets: '.slidein-right',
@@ -9,6 +10,7 @@ $(document).ready(function() {
         });
     }
 
+    //SlideIn left animation
     if ($(".slidein-left").length) {
         anime({
             targets: '.slidein-left',
@@ -17,6 +19,7 @@ $(document).ready(function() {
         });
     }
 
+    //SlideIn up animation
     if ($(".slidein-up").length) {
         anime({
             targets: '.slidein-up',

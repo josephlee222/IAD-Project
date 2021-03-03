@@ -1,11 +1,16 @@
 <html>
     <?php
+    //Import connection and account checker
     include_once "connect.php";
     include_once "auth.php";
+
+    //Initialise variables
     $show_edit = false;
 
+    //If a form via POST method is received
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST["edit-btn"])) {
+            //Collect form details
             $edit_id = $_POST["edit-id"];
             $edit_name = $_POST["edit-name"];
             $edit_phone = $_POST["edit-phone"];
@@ -13,10 +18,13 @@
             $edit_course = $_POST["edit-course"];
             $edit_date = $_POST["edit-date"];
 
+            //Update registration details
             $sql = "UPDATE registrations SET name='" . $edit_name . "', course='" . $edit_course . "', email='" . $edit_email . "', contact=" . $edit_phone . ", register_date='" . $edit_date . "' WHERE id=" . $edit_id;
             if (!mysqli_query($db_connect, $sql)) {
+                //In case of SQL error
                 $error = "mySQL query failed: " . mysqli_error($db_connect);
             } else {
+                //Update successful
                 $success = "
                     Updated registration successfully.
                 ";
@@ -83,6 +91,7 @@
 
         <div class="container main">
             <?php
+            //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {
                 echo "
                 <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -94,6 +103,7 @@
                 ";
             }
 
+            //If a success occurs, this part triggers showing the alert with the success message in it
             if (isset($success)) {
                 echo "
                 <div class='alert alert-success alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -138,7 +148,9 @@
                             </div>
                         </div>
                         <?php
+                        //Checks whether a record is successfully retrived
                         if ($show_edit) {
+                            //Print out the html form that the user is going to edit
                             $row = mysqli_fetch_assoc($result);
                             echo '
                             <div class="row">

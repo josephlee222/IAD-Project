@@ -1,7 +1,11 @@
 <html>
     <?php
+    //Import connection
     include_once "connect.php";
+
+    //If a form is received through GET method
     if ($_SERVER["REQUEST_METHOD"] === "GET") {
+        //If a search is performed
         if (isset($_GET["search-text"])) {
             //If search is set
             $search_text = mysqli_real_escape_string($db_connect,$_GET["search-text"]);
@@ -14,7 +18,6 @@
         $result = mysqli_query($db_connect, $sql);
         if (!$result) {
             $error = "mySQL query failed: " . mysqli_error($db_connect);
-            //echo $error;
         }
     }
     ?>
@@ -57,6 +60,7 @@
 
         <div class="container main">
             <?php
+            //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {
                 echo "
                 <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -105,7 +109,9 @@
                         <div class="card-body">
                             <div class="card-columns courses-section">
                                 <?php
+                                //Check whether there are any courses in the result
                                 if (mysqli_num_rows($result) > 0) {
+                                    //Print all courses in the result
                                     for ($i = 1; mysqli_num_rows($result) >= $i; $i++) {
                                         $row = mysqli_fetch_assoc($result);
                                         echo '
@@ -123,6 +129,7 @@
                                         ';
                                     }
                                 } else {
+                                    //Print no results found
                                     echo "<p>No courses found matching criteria</p>";
                                 }
                                 ?>

@@ -1,15 +1,20 @@
 <html>
     <?php
+    //Import SQL connection
     include_once "connect.php";
 
+    //Get courses
     $sql = "SELECT * FROM courses";
     $result = mysqli_query($db_connect, $sql);
 
+    //Get the number of courses avaliable to register
     $courses_count = mysqli_num_rows($result);
 
+    //Get registrations
     $sql = "SELECT * FROM registrations";
     $result = mysqli_query($db_connect, $sql);
 
+    //Get the total registrations
     $register_count = mysqli_num_rows($result);
     ?>
     <head>

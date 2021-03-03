@@ -1,20 +1,33 @@
 <html>
     <?php
+    //Import connection and account checker
     include_once "connect.php";
     include_once "auth.php";
 
+    //Initialise variables
     $deleted = false;
     $show_confirm = false;
 
+    //If a form via POST method is received
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        //If the delete button is pressed
         if (isset($_POST["delete-btn"])) {
             $delete_id = $_POST["delete-id"];
+
+            //Delete registration by ID
             $sql = "DELETE FROM registrations WHERE id=" . $delete_id;
             if (!mysqli_query($db_connect, $sql)) {
+                //In case of SQL error
                 $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
             } else {
+                //Check whether any rows are affected
                 if (mysqli_affected_rows($db_connect) > 0) {
+                    //If delete is successful
                     $success = "Delete successful: " . mysqli_affected_rows($db_connect) . " entry affected.";
+                    $deleted = true;
+                } else {
+                    //If for whatever reason the SQL did not affect any rows
+                    $error = "Delete unsuccessful... The registration might have been deleted already";
                     $deleted = true;
                 }
             }
@@ -22,18 +35,27 @@
 
         }
     }
+
+    //Check whether the registration is deleted. If false return true
     if (!$deleted) {
+        //Check GET has id set
         if (isset($_GET["id"])) {
             $search_id = $_GET["id"];
+
+            //Search for registration details by ID
             $sql = "SELECT * FROM registrations WHERE id=" . $search_id;
             $result = mysqli_query($db_connect, $sql);
 
             if (!$result) {
+                //In case of SQL error
                 $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
             } else {
+                //Check whether record exist
                 if (mysqli_num_rows($result) > 0) {
+                    //Record exist, show delete confirmation
                     $show_confirm = true;
                 } else {
+                    //Record does not exist, show error message
                     $error = "Record does not exist. Please try again";
                 }
                 
@@ -76,6 +98,7 @@
 
         <div class="container main">
             <?php
+            //If an error occurs, this part triggers showing the alert with the error code in it
             if (isset($error)) {
                 echo "
                 <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -87,6 +110,7 @@
                 ";
             }
 
+            //If a success occurs, this part triggers showing the alert with the success message in it
             if (isset($success)) {
                 echo "
                 <div class='alert alert-success alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -129,9 +153,11 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- SHould only appear with php (Placeholder HTML) -->
+                        <!-- Should only appear with php -->
                         <?php
+                        //Checks whether a record is successfully retrived
                         if ($show_confirm) {
+                            //Print out the delete confirmation
                             $row = mysqli_fetch_assoc($result);
                             echo '
                                 <div class="row">

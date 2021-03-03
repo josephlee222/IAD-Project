@@ -1,5 +1,6 @@
 //Common admin panel JS functions in here
 $(document).ready(function() {
+    //If the user decides to logout from the admin panel
     $(".logout").click(function() {
         // Long ass thing to make sure the logout will not break even if teacher move it to another folder
         document.cookie = "session_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=" + window.location.pathname.substring(window.location.pathname.indexOf("/"), window.location.pathname.lastIndexOf("/")) + ";";
@@ -7,6 +8,7 @@ $(document).ready(function() {
         $(location).attr('href', './admin_login.php');
     })
 
+    //Code for the expendable filter card found on admin_view_all.php
     $(".card-expendable").click(function() {
         // Function for expendable card
         if($("#expendable").css('display') == 'none') {
@@ -27,6 +29,7 @@ $(document).ready(function() {
         }
     })
 
+    //Stagger animeJS animation for list
     if ($(".stagger").length) {
         anime({
             targets: '.stagger',

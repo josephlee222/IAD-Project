@@ -1,5 +1,6 @@
 <html>
     <?php
+        //Import connection and account checker
         include_once "connect.php";
         include_once "auth.php";
 
@@ -7,24 +8,32 @@
         $sql = "SELECT course_name FROM courses";
         $result_courses = mysqli_query($db_connect, $sql);
         
+        //If the filter button is pressed
         if (isset($_GET["filter-btn"])) {
             $sql = "SELECT * FROM registrations";
             $start = true;
+
+            //If the course filter is set
             if (isset($_GET["filter-course"]) && $_GET["filter-course"] != "") {
                 $fliter_course = $_GET["filter-course"];
                 $sql = $sql . " WHERE course LIKE '%" . $fliter_course . "%'";
                 $start = false;
             }
 
+            //If the date filter is set
             if (isset($_GET["filter-date"]) && $_GET["filter-date"] != "") {
                 $fliter_date = $_GET["filter-date"];
                 if (!$start) {
+                    //If it is the first condition
                     $sql = $sql . " AND register_date LIKE '%" . $fliter_date . "%'";
                 } else {
+                    //If there is another condition already in use
                     $sql = $sql . " WHERE register_date LIKE '%" . $fliter_date . "%'";
+                    $start = false;
                 }
             }
 
+            //If the name filter is set
             if (isset($_GET["filter-name"]) && $_GET["filter-name"] != "") {
                 $fliter_name = $_GET["filter-name"];
                 if (!$start) {
@@ -37,11 +46,13 @@
             $sql = $sql . " ORDER BY id DESC";
             
         } else {
+            //Default display
             $sql = "SELECT * FROM registrations ORDER BY id DESC";
         }
 
         $result = mysqli_query($db_connect, $sql);
         if (!$result) {
+            //In case of SQL error
             $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
             //echo $error;
         }
@@ -80,6 +91,7 @@
 
     <div class="container main">
         <?php
+        //If an error occurs, this part triggers showing the alert with the error code in it
         if (isset($error)) {
             echo "
             <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>

@@ -1,37 +1,46 @@
 <html>
     <?php
-        include_once "connect.php";
+    //Import connection
+    include_once "connect.php";
 
-        if ($_SERVER["REQUEST_METHOD"] === "POST") {
-            if (isset($_POST["register-btn"])) {
-                $register_name = $_POST["register-name"];
-                $register_phone = $_POST["register-phone"];
-                $register_email = $_POST["register-email"];
-                $register_course = $_POST["register-course"];
-                $register_date = $_POST["register-date"];
+    //If a form via POST method is received
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        if (isset($_POST["register-btn"])) {
+            //Get form details for registration
+            $register_name = $_POST["register-name"];
+            $register_phone = $_POST["register-phone"];
+            $register_email = $_POST["register-email"];
+            $register_course = $_POST["register-course"];
+            $register_date = $_POST["register-date"];
 
-                $sql = "INSERT INTO registrations (name, course, email, contact, register_date) VALUES ('" . $register_name . "', '" . $register_course . "', '" . $register_email . "', " . $register_phone . ", '" . $register_date . "' )";
-                if (!mysqli_query($db_connect, $sql)) {
-                    $error = "mySQL query failed: " . mysqli_error($db_connect);
-                } else {
-                    $success = "
-                        <h4 class='alert-heading'>Registration successful</h4>
-                        <p>Thank you for registering! We will get back to you as soon as we can.</p>
-                    ";
-                }
+            //Insert new registration into database
+            $sql = "INSERT INTO registrations (name, course, email, contact, register_date) VALUES ('" . $register_name . "', '" . $register_course . "', '" . $register_email . "', " . $register_phone . ", '" . $register_date . "' )";
+            if (!mysqli_query($db_connect, $sql)) {
+                //In case of SQL error
+                $error = "mySQL query failed: " . mysqli_error($db_connect);
+            } else {
+                //Registration successful, show success message
+                $success = "
+                    <h4 class='alert-heading'>Registration successful</h4>
+                    <p>Thank you for registering! We will get back to you as soon as we can.</p>
+                ";
             }
         }
+    }
 
-        if (isset($_GET["register-id"])) {
-            $select_id = $_GET["register-id"];
-        }
+    //Check whether a course has been preset by a GET variable
+    if (isset($_GET["register-id"])) {
+        $select_id = $_GET["register-id"];
+    }
 
-        $sql = "SELECT course_name FROM courses";
-        $result = mysqli_query($db_connect, $sql);
-        
-        if (!$result) {
-            $error = "mySQL query failed: " . mysqli_error($db_connect);
-        }
+    //Get the list of courses
+    $sql = "SELECT course_name FROM courses";
+    $result = mysqli_query($db_connect, $sql);
+    
+    if (!$result) {
+        //In case of SQL error
+        $error = "mySQL query failed: " . mysqli_error($db_connect);
+    }
     ?>
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -72,6 +81,8 @@
         
         <div class="container main">
             <?php
+            //If an error occurs, this part triggers showing the alert with the error code in it
+            //If a success occurs, this part triggers showing the alert with the success message in it
             if (isset($error)) {
                 echo "
                 <div class='alert alert-danger alert-dismissible fade show mt-3 mb-0 slidein-right' role='alert'>
@@ -129,19 +140,23 @@
                                         <label for="register-course">Course</label>
                                         <select required class="custom-input full-field" name="register-course" id="register-course">
                                             <?php
-                                                if (mysqli_num_rows($result) > 0) {
-                                                    for ($i = 1; mysqli_num_rows($result) >= $i; $i++) {
-                                                        $row = mysqli_fetch_assoc($result);
-                                                        if ($i == $select_id) {
-                                                            //If the user come to this page with a register id from course_info.php
-                                                            echo "<option value='" . $row['course_name'] . "' selected>" . $row['course_name'] . "</option>";
-                                                        } else {
-                                                            echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
-                                                        }
+                                            //Checks whether there is courses to register for
+                                            if (mysqli_num_rows($result) > 0) {
+                                                //Print options for courses
+                                                for ($i = 1; mysqli_num_rows($result) >= $i; $i++) {
+                                                    $row = mysqli_fetch_assoc($result);
+                                                    if ($i == $select_id) {
+                                                        //If the user come to this page with a register id from course_info.php
+                                                        echo "<option value='" . $row['course_name'] . "' selected>" . $row['course_name'] . "</option>";
+                                                    } else {
+                                                        //Default selection
+                                                        echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
                                                     }
-                                                } else {
-                                                    echo "<option disabled>No courses avaliable</option>";
                                                 }
+                                            } else {
+                                                //If there is no courses avaliable, print disabled option
+                                                echo "<option disabled>No courses avaliable</option>";
+                                            }
                                             ?>
                                         </select>
                                     </div>
