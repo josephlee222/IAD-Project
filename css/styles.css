@@ -51,6 +51,10 @@ footer a:hover {
     color: #FFB300;
 }
 
+.white {
+    color: white;
+}
+
 .card {
     background-color: #489144;
     border-radius: 8px;

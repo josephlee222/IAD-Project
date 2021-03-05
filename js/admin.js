@@ -3,8 +3,9 @@ $(document).ready(function() {
     //If the user decides to logout from the admin panel
     $(".logout").click(function() {
         // Long ass thing to make sure the logout will not break even if teacher move it to another folder
-        document.cookie = "session_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=" + window.location.pathname.substring(window.location.pathname.indexOf("/"), window.location.pathname.lastIndexOf("/")) + ";";
-        document.cookie = "session_password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=" + window.location.pathname.substring(window.location.pathname.indexOf("/"), window.location.pathname.lastIndexOf("/")) + ";";
+        var path = window.location.pathname.substring(window.location.pathname.indexOf("/"), window.location.pathname.lastIndexOf("/"))
+        document.cookie = "session_username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=" + path + ";";
+        document.cookie = "session_password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=" + path + ";";
         $(location).attr('href', './admin_login.php');
     })
 

@@ -23,7 +23,7 @@
             } else {
                 //Registration successful, show success message
                 $success = "
-                    Register successful done.
+                    Register successful done.<br>An E-mail has been sent to the customer with the registration details
                 ";
             }
         }
@@ -47,6 +47,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
         <script src="./js/animations.js"></script>
         <script src="./js/admin.js"></script>
+        <script src="./js/vaildation.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Innovate Training - Admin (Add Registant)</title>
     </head>
@@ -118,18 +119,27 @@
                                         <form method="POST" class="container-fluid p-0">
                                             <div class="row mb-3">
                                                 <div class="col-lg-6 mb-3 mb-lg-0">
-                                                    <label for="register-name">Name</label>
-                                                    <input required type="text" class="custom-input w-100" id="register-name" name="register-name" placeholder="Your name">
+                                                    <div class="d-flex align-content-center label-div">
+                                                        <label for="register-name" style="flex-grow: 1;">Name</label>
+                                                        <span id="vaildation" class="material-icons white"></span>
+                                                    </div>
+                                                    <input required type="text" class="custom-input vaildate-text w-100" id="register-name" name="register-name" placeholder="Your name" minlength="3">
                                                 </div>
                                                 <div class="col-lg-6">
-                                                    <label for="register-phone">Phone</label>
-                                                    <input required type="tel" class="custom-input w-100" id="register-phone" name="register-phone" placeholder="Phone number">
+                                                    <div class="d-flex align-content-center label-div">
+                                                        <label for="register-phone" style="flex-grow: 1;">Phone</label>
+                                                        <span id="vaildation" class="material-icons white"></span>
+                                                    </div>
+                                                    <input required type="tel" class="custom-input vaildate-phone w-100" id="register-phone" name="register-phone" placeholder="Phone number" minlength="8" maxlength="8">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">
                                                 <div class="col">
-                                                    <label for="register-email">E-mail</label>
-                                                    <input required type="email" class="custom-input w-100" id="register-email" name="register-email" placeholder="Email address">
+                                                    <div class="d-flex align-content-center label-div">
+                                                        <label for="register-email" style="flex-grow: 1;">Email</label>
+                                                        <span id="vaildation" class="material-icons white"></span>
+                                                    </div>
+                                                    <input required type="email" class="custom-input vaildate-email w-100" id="register-email" name="register-email" placeholder="Email address">
                                                 </div>
                                             </div>
                                             <div class="row mb-3">

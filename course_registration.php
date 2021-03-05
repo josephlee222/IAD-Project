@@ -2,6 +2,7 @@
     <?php
     //Import connection
     include_once "connect.php";
+    $select_id = 0;
 
     //If a form via POST method is received
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -34,7 +35,7 @@
     }
 
     //Get the list of courses
-    $sql = "SELECT course_name FROM courses";
+    $sql = "SELECT course_name, id FROM courses";
     $result = mysqli_query($db_connect, $sql);
     
     if (!$result) {
@@ -50,6 +51,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
         <script src="./js/animations.js"></script>
+        <script src="./js/vaildation.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Innovate Training - Register</title>
     </head>
@@ -121,31 +123,43 @@
                             <div class="container-fluid p-0">
                                 <div class="row mb-3">
                                     <div class="col-lg-6 mb-3 mb-lg-0">
-                                        <label for="register-name">Name</label>
-                                        <input required type="text" class="custom-input w-100" id="register-name" name="register-name" placeholder="Your name">
+                                        <div class="d-flex align-content-center label-div">
+                                            <label for="register-name" style="flex-grow: 1;">Name</label>
+                                            <span id="vaildation" class="material-icons white"></span>
+                                        </div>
+                                        <input required type="text" class="custom-input vaildate-text w-100" id="register-name" name="register-name" placeholder="Your name" minlength="3">
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="register-phone">Phone</label>
-                                        <input required type="tel" class="custom-input w-100" id="register-phone" name="register-phone" placeholder="Phone number">
+                                        <div class="d-flex align-content-center label-div">
+                                            <label for="register-phone" style="flex-grow: 1;">Phone</label>
+                                            <span id="vaildation" class="material-icons white"></span>
+                                        </div>
+                                        <input required type="tel" class="custom-input vaildate-number w-100" id="register-phone" name="register-phone" placeholder="Phone number" minlength="8" maxlength="8">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="register-email">E-mail</label>
-                                        <input required type="email" class="custom-input w-100" id="register-email" name="register-email" placeholder="Email address">
+                                        <div class="d-flex align-content-center label-div">
+                                            <label for="register-email" style="flex-grow: 1;">Email</label>
+                                            <span id="vaildation" class="material-icons white"></span>
+                                        </div>
+                                        <input required type="email" class="custom-input vaildate-email w-100" id="register-email" name="register-email" placeholder="Email address">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-lg-6 mb-3 mb-lg-0">
-                                        <label for="register-course">Course</label>
+                                        <div class="d-flex align-content-center label-div">
+                                            <label for="register-course" style="flex-grow: 1;">Course</label>
+                                            <span id="vaildation" class="material-icons white"></span>
+                                        </div>
                                         <select required class="custom-input w-100" name="register-course" id="register-course">
                                             <?php
                                             //Checks whether there is courses to register for
                                             if (mysqli_num_rows($result) > 0) {
                                                 //Print options for courses
-                                                for ($i = 1; mysqli_num_rows($result) >= $i; $i++) {
+                                                for ($i = 0; mysqli_num_rows($result) > $i; $i++) {
                                                     $row = mysqli_fetch_assoc($result);
-                                                    if ($i == $select_id) {
+                                                    if ($row['id'] == $select_id) {
                                                         //If the user come to this page with a register id from course_info.php
                                                         echo "<option value='" . $row['course_name'] . "' selected>" . $row['course_name'] . "</option>";
                                                     } else {
@@ -161,8 +175,11 @@
                                         </select>
                                     </div>
                                     <div class="col-lg-6">
-                                        <label for="register-date">Date</label>
-                                        <input required type="date" class="custom-input w-100" id="register-date" name="register-date" placeholder="Attending date">
+                                        <div class="d-flex align-content-center label-div">
+                                            <label for="register-date" style="flex-grow: 1;">Start date</label>
+                                            <span id="vaildation" class="material-icons white"></span>
+                                        </div>
+                                        <input required type="date" class="custom-input w-100" id="register-date vaildate-text" name="register-date" placeholder="Attending date">
                                     </div>
                                 </div>
                                 <div class="row">

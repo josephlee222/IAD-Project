@@ -26,7 +26,7 @@
             } else {
                 //Update successful
                 $success = "
-                    Updated registration successfully.
+                    Updated registration successfully.<br>An E-mail has been sent to the customer about the changes in the registration
                 ";
             }
         }
@@ -66,6 +66,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
         <script src="./js/animations.js"></script>
         <script src="./js/admin.js"></script>
+        <script src="./js/vaildation.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Innovate Training - Admin (Edit Registant)</title>
     </head>
@@ -161,18 +162,27 @@
                                             <form method="POST" class="container-fluid p-0">
                                                 <div class="row mb-3">
                                                     <div class="col-lg-6 mb-3 mb-lg-0">
-                                                        <label for="edit-name">Name</label>
-                                                        <input required type="text" class="custom-input w-100" id="edit-name" name="edit-name" placeholder="Your name" value="' . $row['name'] . '">
+                                                        <div class="d-flex align-content-center label-div">
+                                                            <label for="edit-name" style="flex-grow: 1;">Name</label>
+                                                            <span id="vaildation" class="material-icons white"></span>
+                                                        </div>
+                                                        <input required type="text" class="custom-input vaildate-text w-100" id="edit-name" name="edit-name" placeholder="Your name" value="' . $row['name'] . '" minlength="8">
                                                     </div>
                                                     <div class="col-lg-6">
-                                                        <label for="edit-phone">Phone</label>
-                                                        <input required type="tel" class="custom-input w-100" id="edit-phone" name="edit-phone" placeholder="Phone number" value="' . $row['contact'] . '">
+                                                        <div class="d-flex align-content-center label-div">
+                                                            <label for="edit-phone" style="flex-grow: 1;">Phone</label>
+                                                            <span id="vaildation" class="material-icons white"></span>
+                                                        </div>
+                                                        <input required type="tel" class="custom-input vaildate-phone w-100" id="edit-phone" name="edit-phone" placeholder="Phone number" value="' . $row['contact'] . '" minlength="8" maxlength="8">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col">
-                                                        <label for="edit-email">E-mail</label>
-                                                        <input required type="email" class="custom-input w-100" id="edit-email" name="edit-email" placeholder="Email address" value="' . $row['email'] . '">
+                                                        <div class="d-flex align-content-center label-div">
+                                                            <label for="edit-email" style="flex-grow: 1;">Email</label>
+                                                            <span id="vaildation" class="material-icons white"></span>
+                                                        </div>
+                                                            <input required type="email" class="custom-input vaildate-email w-100" id="edit-email" name="edit-email" placeholder="Email address" value="' . $row['email'] . '">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-4">

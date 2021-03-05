@@ -168,7 +168,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <iframe class="w-100" width="470" height="315" src="https://www.youtube.com/embed/XeK_I0XQW6U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/847510429&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/donglekumquat" title="william reid" target="_blank" style="color: #cccccc; text-decoration: none;">william reid</a> · <a href="https://soundcloud.com/donglekumquat/accelerate-bedzoom-spoons-of-god" title="Accelerate - Bedzoom (Spoons of God)" target="_blank" style="color: #cccccc; text-decoration: none;">Accelerate - Bedzoom (Spoons of God)</a></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="custom-btn" data-dismiss="modal">Close</button>

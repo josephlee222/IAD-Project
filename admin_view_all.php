@@ -66,6 +66,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
         <script src="./js/animations.js"></script>
         <script src="./js/admin.js"></script>
+        <script src="./js/vaildation.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Innovate Training - Admin (View Registants)</title>
     </head>
@@ -150,7 +151,10 @@
                                                 <input id="filter-date" name="filter-date" class="custom-input w-100" type="date" placeholder="Fliter By Date" value="<?php if (isset($_GET['filter-date'])) {echo $_GET['filter-date'];}?>">
                                             </div>
                                             <div class="col-lg-4">
-                                                <label for="fliter-name">Filter By Name</label>
+                                                <div class="d-flex align-content-center label-div">
+                                                    <label for="filter-name" style="flex-grow: 1;">Filter By Name</label>
+                                                    <span id="vaildation" class="material-icons white"></span>
+                                                </div>
                                                 <input id="filter-name" name="filter-name" class="custom-input w-100" type="text" placeholder="Fliter By Name" value="<?php if (isset($_GET['filter-name'])) {echo $_GET['filter-name'];}?>">
                                             </div>
                                         </div>
