@@ -6,31 +6,57 @@
 
     //If a form via POST method is received
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        //If the register button is clicked
         if (isset($_POST["register-btn"])) {
-            //Collect form details
+            //Get form details for registration
             $register_name = $_POST["register-name"];
             $register_phone = $_POST["register-phone"];
             $register_email = $_POST["register-email"];
             $register_course = $_POST["register-course"];
             $register_date = $_POST["register-date"];
 
-            //Add new registration details
-            $sql = "INSERT INTO registrations (name, course, email, contact, register_date) VALUES ('" . $register_name . "', '" . $register_course . "', '" . $register_email . "', " . $register_phone . ", '" . $register_date . "' )";
-            if (!mysqli_query($db_connect, $sql)) {
-                //In case of SQL error
+            //Check the course which the user is registering
+            $sql = "SELECT * FROM courses WHERE id=" . $register_course;
+            $result = mysqli_query($db_connect, $sql);
+            if (!$result) {
                 $error = "mySQL query failed: " . mysqli_error($db_connect);
             } else {
-                //Registration successful, show success message
-                $success = "
-                    Register successful done.<br>An E-mail has been sent to the customer with the registration details
-                ";
+                $row =mysqli_fetch_assoc($result);
             }
+
+            $course_id = $row["id"];
+            $course_seats = $row["seats"];
+            $course_seats_after = $course_seats - 1;
+            $register_course = $row["course_name"];
+
+            //Checking whether the course still have avaliable seats
+            if ($course_seats > 0) {
+                //If there is seats avaliable
+                //Insert new registration into database
+                $sql = "INSERT INTO registrations (name, course, email, contact, register_date) VALUES ('" . $register_name . "', '" . $register_course . "', '" . $register_email . "', " . $register_phone . ", '" . $register_date . "' )";
+                if (!mysqli_query($db_connect, $sql)) {
+                    //In case of SQL error
+                    $error = "mySQL query failed: " . mysqli_error($db_connect);
+                } else {
+                    $sql = "UPDATE courses SET seats=" . $course_seats_after . " WHERE id=" . $course_id;
+                    if (!mysqli_query($db_connect, $sql)) {
+                        //In case of SQL error
+                        $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
+                    } else {
+                        //Registration successful, show success message
+                        $success = "
+                            Registration successfully done.<br>An E-mail has been sent to the customer with the registration details
+                        ";
+                    }
+                }
+            } else {
+                //If there is no more seats avaliable
+                $error = "The course you have selected is not avaliable anymore as all the seats has been taken. Please try again later.";
+            }   
         }
     }
 
     //Get the list of courses avaliable for registration
-    $sql = "SELECT course_name FROM courses";
+    $sql = "SELECT course_name, id, seats FROM courses";
     $result = mysqli_query($db_connect, $sql);
     
     if (!$result) {
@@ -123,7 +149,7 @@
                                                         <label for="register-name" style="flex-grow: 1;">Name</label>
                                                         <span id="vaildation" class="material-icons white"></span>
                                                     </div>
-                                                    <input required type="text" class="custom-input vaildate-text w-100" id="register-name" name="register-name" placeholder="Your name" minlength="3">
+                                                    <input required type="text" class="custom-input vaildate-text w-100" id="register-name" name="register-name" placeholder="Name" minlength="3">
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <div class="d-flex align-content-center label-div">
@@ -147,17 +173,23 @@
                                                     <label for="register-course">Course</label>
                                                     <select required class="custom-input w-100" name="register-course" id="register-course">
                                                         <?php
-                                                            //Check whether there is more than 1 course
-                                                            if (mysqli_num_rows($result) > 0) {
-                                                                for ($i = 1; mysqli_num_rows($result) >= $i; $i++) {
-                                                                    //print all avaliable courses
-                                                                    $row = mysqli_fetch_assoc($result);
-                                                                    echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
+                                                        //Checks whether there is courses to register for
+                                                        if (mysqli_num_rows($result) > 0) {
+                                                            //Print options for courses
+                                                            for ($i = 0; mysqli_num_rows($result) > $i; $i++) {
+                                                                $row = mysqli_fetch_assoc($result);
+                                                                if ($row['seats'] == 0) {
+                                                                    echo "<option value='" . $row['id'] . "' disabled>" . $row['course_name'] . " [Full]</option>";
+                                                                } else {
+                                                                    //Default selection
+                                                                    echo "<option value='" . $row['id'] . "'>" . $row['course_name'] . "</option>";
                                                                 }
-                                                            } else {
-                                                                //If no courses are avaliable, show a disabled option
-                                                                echo "<option disabled>No courses avaliable</option>";
+                                                                
                                                             }
+                                                        } else {
+                                                            //If there is no courses avaliable, print disabled option
+                                                            echo "<option disabled>No courses avaliable</option>";
+                                                        }
                                                         ?>
                                                     </select>
                                                 </div>

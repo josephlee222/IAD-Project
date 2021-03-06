@@ -185,6 +185,20 @@ footer a:hover {
     text-align: center;
 }
 
+.custom-btn.disabled {
+    background-color: dimgray;
+    color: white;
+    box-shadow: none;
+}
+
+.custom-btn.disabled:hover,
+.custom-btn.disabled:active {
+    background-color: dimgray;
+    color: white;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
 .custom-btn:hover {
     text-decoration: none;
     color: black;

@@ -123,7 +123,21 @@
                                                     <small class="course-other ml-2">' . $row["course_duration"] . ' Days / ' . $row["seats"] . ' Seats</small>
                                                 </div>
                                                 <p class="mb-3">' . $row["description"] . '</p>
-                                                <a class="course-register custom-btn" href="./course_registration.php?register-id=' . $row["id"] . '">Register this course</a>
+                                                <a class="course-register custom-btn '; 
+                                                if ($row["seats"] < 1) {
+                                                    echo "disabled";
+                                                }
+                                                echo '" ';
+                                                if ($row["seats"] > 0) {
+                                                    echo 'href="./course_registration.php?register-id=' . $row["id"] . '"';
+                                                }
+                                                echo '>';
+                                                if ($row["seats"] > 0) {
+                                                    echo 'Register this course';
+                                                } else {
+                                                    echo 'Course unavailable';
+                                                }
+                                                echo '</a>
                                             </div>
                                         </div>
                                         ';

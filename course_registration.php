@@ -14,18 +14,41 @@
             $register_course = $_POST["register-course"];
             $register_date = $_POST["register-date"];
 
-            //Insert new registration into database
-            $sql = "INSERT INTO registrations (name, course, email, contact, register_date) VALUES ('" . $register_name . "', '" . $register_course . "', '" . $register_email . "', " . $register_phone . ", '" . $register_date . "' )";
-            if (!mysqli_query($db_connect, $sql)) {
-                //In case of SQL error
+            $sql = "SELECT * FROM courses WHERE id=" . $register_course;
+            $result = mysqli_query($db_connect, $sql);
+            if (!$result) {
                 $error = "mySQL query failed: " . mysqli_error($db_connect);
             } else {
-                //Registration successful, show success message
-                $success = "
-                    <h4 class='alert-heading'>Registration successful</h4>
-                    <p>Thank you for registering! We will get back to you as soon as we can.</p>
-                ";
+                $row =mysqli_fetch_assoc($result);
             }
+
+            $course_id = $row["id"];
+            $course_seats = $row["seats"];
+            $course_seats_after = $course_seats - 1;
+            $register_course = $row["course_name"];
+
+            if ($course_seats > 0) {
+                //Insert new registration into database
+                $sql = "INSERT INTO registrations (name, course, email, contact, register_date) VALUES ('" . $register_name . "', '" . $register_course . "', '" . $register_email . "', " . $register_phone . ", '" . $register_date . "' )";
+                if (!mysqli_query($db_connect, $sql)) {
+                    //In case of SQL error
+                    $error = "mySQL query failed: " . mysqli_error($db_connect);
+                } else {
+                    $sql = "UPDATE courses SET seats=" . $course_seats_after . " WHERE id=" . $course_id;
+                    if (!mysqli_query($db_connect, $sql)) {
+                        //In case of SQL error
+                        $error = "mySQL query failed: " . mysqli_error($db_connect) . "<br><br>SQL Query: " . $sql;
+                    } else {
+                        //Registration successful, show success message
+                        $success = "
+                            <h4 class='alert-heading'>Registration successful</h4>
+                            <p>Thank you for registering! We will get back to you as soon as we can.<br>An E-mail with your course details will be sent to you shortly.</p>
+                        ";
+                    }
+                }
+            } else {
+                $error = "The course you have selected is not avaliable anymore as all the seats has been taken. Please try again later.";
+            }   
         }
     }
 
@@ -35,7 +58,7 @@
     }
 
     //Get the list of courses
-    $sql = "SELECT course_name, id FROM courses";
+    $sql = "SELECT course_name, id, seats FROM courses";
     $result = mysqli_query($db_connect, $sql);
     
     if (!$result) {
@@ -159,13 +182,18 @@
                                                 //Print options for courses
                                                 for ($i = 0; mysqli_num_rows($result) > $i; $i++) {
                                                     $row = mysqli_fetch_assoc($result);
-                                                    if ($row['id'] == $select_id) {
-                                                        //If the user come to this page with a register id from course_info.php
-                                                        echo "<option value='" . $row['course_name'] . "' selected>" . $row['course_name'] . "</option>";
+                                                    if ($row['seats'] == 0) {
+                                                        echo "<option value='" . $row['id'] . "' disabled>" . $row['course_name'] . " [Full]</option>";
                                                     } else {
-                                                        //Default selection
-                                                        echo "<option value='" . $row['course_name'] . "'>" . $row['course_name'] . "</option>";
+                                                        if ($row['id'] == $select_id) {
+                                                            //If the user come to this page with a register id from course_info.php
+                                                            echo "<option value='" . $row['id'] . "' selected>" . $row['course_name'] . "</option>";
+                                                        } else {
+                                                            //Default selection
+                                                            echo "<option value='" . $row['id'] . "'>" . $row['course_name'] . "</option>";
+                                                        }
                                                     }
+                                                    
                                                 }
                                             } else {
                                                 //If there is no courses avaliable, print disabled option
