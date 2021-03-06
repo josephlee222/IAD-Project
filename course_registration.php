@@ -150,7 +150,7 @@
                                             <label for="register-name" style="flex-grow: 1;">Name</label>
                                             <span id="vaildation" class="material-icons white"></span>
                                         </div>
-                                        <input required type="text" class="custom-input vaildate-text w-100" id="register-name" name="register-name" placeholder="Your name" minlength="3">
+                                        <input required type="text" class="custom-input vaildate-text w-100" id="register-name" name="register-name" placeholder="Your name" minlength="4">
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="d-flex align-content-center label-div">
