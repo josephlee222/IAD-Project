@@ -23,7 +23,7 @@
                 //Check whether any rows are affected
                 if (mysqli_affected_rows($db_connect) > 0) {
                     //If delete is successful
-                    $success = "Delete successful: " . mysqli_affected_rows($db_connect) . " entry affected.<br>An E-mail has been sent to the customer";
+                    $success = "Delete successful: " . mysqli_affected_rows($db_connect) . " entry affected.<br>An E-mail has been sent to the customer about the deletion.";
                     $deleted = true;
                 } else {
                     //If for whatever reason the SQL did not affect any rows
