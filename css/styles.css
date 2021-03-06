@@ -106,9 +106,8 @@ footer a:hover {
     font-size: 18px;
 }
 
-.danger, .logout {
-    background-color: red !important;
-    color: white !important;
+.option-btn {
+    padding: 0.25rem 0.5rem !important;
 }
 
 /*--- index.php Styles ---*/
@@ -215,6 +214,29 @@ footer a:hover {
     display: inline-flex;
 }
 
+.mail-btn {
+    justify-content: center;
+    align-items: center;
+    background-color: #03A9F4;
+    color: white;
+}
+
+.mail-btn:hover {
+    background-color: #03A9F4;
+    color: white;
+}
+
+.mail-icon {
+    padding: 0.15rem 0rem;
+}
+
+.danger,
+.danger:hover,
+.logout {
+    background-color: red;
+    color: white;
+}
+
 .custom-input {
     border-radius: 4px;
     background-color: white;
@@ -256,7 +278,6 @@ footer a:hover {
         column-count: 1;
     }
 }
-
 
 /*--- Animation properties ---*/
 
