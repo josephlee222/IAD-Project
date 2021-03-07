@@ -74,8 +74,8 @@
                                     <div class="card white">
                                         <div class="card-body feature-card-body">
                                             <h1 class="material-icons feature-icon">school</h1>
-                                            <h5>Experienced teachers</h5>
-                                            <p>All of our teachers have at least 5 years of relevant updated experience</p>
+                                            <h5 class="card-title">Experienced teachers</h5>
+                                            <p>All of our teachers have at least 5 years of relevant updated programming experience</p>
                                         </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                     <div class="card white">
                                         <div class="card-body feature-card-body">
                                             <h1 class="material-icons feature-icon">whatshot</h1>
-                                            <h5>Updated technologies</h5>
+                                            <h5 class="card-title">Updated technologies</h5>
                                             <p>We teach demanding techologies such as HTML5 and Swift programming</p>
                                         </div>
                                     </div>
@@ -92,7 +92,7 @@
                                     <div class="card white">
                                         <div class="card-body feature-card-body">
                                             <h1 class="material-icons feature-icon">psychology</h1>
-                                            <h5>Critical thinking</h5>
+                                            <h5 class="card-title">Critical thinking</h5>
                                             <p>Activites are design to train and challange our student's critical thinking</p>
                                         </div>
                                     </div>

@@ -77,7 +77,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h1>Courses</h1>
+                            <h1 class="card-title">Courses</h1>
                             <p>Browse though our avaliable offerings</p>
                         </div>
                     </div>

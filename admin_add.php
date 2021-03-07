@@ -195,7 +195,7 @@
                                                 </div>
                                                 <div class="col-lg-6">
                                                     <label for="register-date">Date</label>
-                                                    <input required type="date" class="custom-input w-100" id="register-date" name="register-date" placeholder="Attending date">
+                                                    <input required type="date" class="custom-input w-100" id="register-date" name="register-date" placeholder="Attending date"  min="<?php echo date("Y-m-d");?>">
                                                 </div>
                                             </div>
                                             <div class="row">

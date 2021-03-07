@@ -185,7 +185,7 @@
                                                 <div class="container-fluid p-0">
                                                     <div class="row">
                                                         <div class="col-lg-8 mb-3 mb-lg-0">
-                                                            <h5>' . $row["name"] . '</h5>
+                                                            <h5 class="card-title">' . $row["name"] . '</h5>
                                                             <p>Course Applied: ' . $row["course"] . '<br>Start Date: ' . $row["register_date"] . '<br>Email: ' . $row["email"] . '<br>Phone: ' . $row["contact"] . '</p>
                                                         </div>
                                                         <div class="col-lg-4 list-controls d-flex">

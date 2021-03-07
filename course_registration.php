@@ -132,7 +132,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
-                            <h1>Register</h1>
+                            <h1 class="card-title">Register</h1>
                             <p>Register and book for our courses today.</p>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
             </div>
             
             <div class="row">
-                <form class="col-lg-7 slidein-right" method="POST">
+                <form class="col-lg-7 <?php if (!isset($success)) {echo 'slidein-right';}?>" method="POST">
                     <div class="card">
                         <div class="card-body">
                             <div class="container-fluid p-0">
@@ -207,7 +207,7 @@
                                             <label for="register-date" style="flex-grow: 1;">Start date</label>
                                             <span id="vaildation" class="material-icons white"></span>
                                         </div>
-                                        <input required type="date" class="custom-input w-100" id="register-date vaildate-text" name="register-date" placeholder="Attending date">
+                                        <input required type="date" class="custom-input w-100" id="register-date vaildate-text" name="register-date" placeholder="Attending date" min="<?php echo date("Y-m-d");?>">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -219,11 +219,30 @@
                         </div>
                     </div>
                 </form>
-                <div class="col-lg-5 slidein-left">
+                <div class="col-lg-5 <?php if (!isset($success)) {echo 'slidein-left';}?>">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Placeholder Title</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                            <h5 class="card-title">Book our courses today!</h5>
+                            <div>
+                                <div class="card white mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">1. Sign up</h5>
+                                        <p>Select a course to book, date to attend and fill in your details to get started</p>
+                                    </div>
+                                </div>
+                                <div class="card white mb-3">
+                                    <div class="card-body">
+                                        <h5 class="card-title">2. Payment</h5>
+                                        <p>Visit our education center to pay for course fees</p>
+                                    </div>
+                                </div>
+                                <div class="card white">
+                                    <div class="card-body">
+                                        <h5 class="card-title">3. Start course</h5>
+                                        <p>After payment, start attending the course at out education center on the date you have selected</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

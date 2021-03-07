@@ -155,7 +155,7 @@
                             $row = mysqli_fetch_assoc($result);
                             echo '
                             <div class="row">
-                                <div class="col">
+                                <div class="col '; if (!isset($success)) {echo 'slidein-left';} echo '">
                                     <div class="card">
                                         <div class="card-body">
                                             <h5 class="card-title">Edit Registration</h5>
@@ -207,7 +207,7 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="edit-date">Date</label>
-                                                        <input required type="date" class="custom-input w-100" id="edit-date" name="edit-date" placeholder="Attending date" value="' . $row['register_date'] . '">
+                                                        <input required type="date" class="custom-input w-100" id="edit-date" name="edit-date" placeholder="Attending date" value="' . $row['register_date'] . '" min="<?php echo date("Y-m-d");?>">
                                                     </div>
                                                 </div>
                                                 <hr>
