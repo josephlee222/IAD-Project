@@ -184,11 +184,11 @@
                                             <div class="card-body">
                                                 <div class="container-fluid p-0">
                                                     <div class="row">
-                                                        <div class="col-lg-8 mb-3 mb-lg-0">
+                                                        <div class="col-xl-8 col-lg-7 mb-3 mb-lg-0">
                                                             <h5 class="card-title">' . $row["name"] . '</h5>
                                                             <p>Course Applied: ' . $row["course"] . '<br>Start Date: ' . $row["register_date"] . '<br>Email: ' . $row["email"] . '<br>Phone: ' . $row["contact"] . '</p>
                                                         </div>
-                                                        <div class="col-lg-4 list-controls d-flex">
+                                                        <div class="col-xl-4 col-lg-5 list-controls d-flex">
                                                             <a class="custom-btn mail-btn mr-2 flex-grow-1 option-btn d-inline-flex" href="mailto:' . $row["email"] . '"><span class="material-icons mr-3 inline-icon">email</span>E-mail</a>
                                                             <a class="custom-btn mr-2 option-btn" href="./admin_edit.php?id=' . $row["id"] . '"><span class="material-icons inline-icon">edit</span></a>
                                                             <a class="custom-btn danger option-btn" href="./admin_delete.php?id=' . $row["id"] . '"><span class="material-icons inline-icon">delete</span></a>

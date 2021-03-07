@@ -82,6 +82,7 @@ footer a:hover {
 .list-group .list-group-item.active {
     color: #346b31;
     border-color: #FFB300;
+    border-width: 3px;
     font-weight: 700;
 }
 
