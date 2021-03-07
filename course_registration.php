@@ -248,9 +248,8 @@
                 </div>
             </div>
         </div>
-
         <footer class="my-5">
-            <p>Innovate Training - 2021 - <a href="./admin_login.php">Admin</a></p>
+            <p>Innovate Training - 2021<br><a href="./admin_login.php">Admin</a> - <a href="https://www.google.com/maps/place/ITE+College+Central/@1.377746,103.8560712,15z/data=!4m2!3m1!1s0x0:0x5c37585cc46eb695?sa=X&ved=2ahUKEwiYhanx6Z3vAhVH8HMBHcNUB60Q_BIwggF6BAhKEAU">Find Us</a></p>
         </footer>
     </body>
 </html>
