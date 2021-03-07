@@ -29,6 +29,8 @@
                     Updated registration successfully.<br>An E-mail has been sent to the customer about the changes in the registration
                 ";
             }
+        } else if (isset($_POST["delete-btn"])) {
+            
         }
     }
 
@@ -185,8 +187,8 @@
                                                             <input required type="email" class="custom-input vaildate-email w-100" id="edit-email" name="edit-email" placeholder="Email address" value="' . $row['email'] . '">
                                                     </div>
                                                 </div>
-                                                <div class="row mb-4">
-                                                    <div class="col-lg-6 mb-3 mb-lg-0">
+                                                <div class="row mb-3">
+                                                    <div class="col-lg-6 mb-4 mb-lg-0">
                                                         <label for="edit-course">Course</label>
                                                         <select required class="custom-input w-100" name="edit-course" id="edit-course">
                                                             '; 
@@ -207,7 +209,7 @@
                                                     </div>
                                                     <div class="col-lg-6">
                                                         <label for="edit-date">Date</label>
-                                                        <input required type="date" class="custom-input w-100" id="edit-date" name="edit-date" placeholder="Attending date" value="' . $row['register_date'] . '" min="<?php echo date("Y-m-d");?>">
+                                                        <input required type="date" class="custom-input w-100" id="edit-date" name="edit-date" placeholder="Attending date" value="' . $row['register_date'] . '" min="'; echo date("Y-m-d"); echo '">
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -219,7 +221,16 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <input type="submit" class="custom-btn w-100 mb-0" id="edit-btn" name="edit-btn" value="Edit Registration">
+                                                        <div class="container-fluid p-0">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <input type="submit" class="custom-btn danger w-100 mb-3 mb-lg-0" id="cancel-btn" name="cancel-btn" value="Cancel Edit">
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <input type="submit" class="custom-btn w-100 mb-0" id="edit-btn" name="edit-btn" value="Edit Registration">
+                                                                </div>
+                                                            </div>
+                                                        </div>       
                                                     </div>
                                                 </div>
                                             </form>
