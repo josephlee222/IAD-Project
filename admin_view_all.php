@@ -189,9 +189,9 @@
                                                             <p>Course Applied: ' . $row["course"] . '<br>Start Date: ' . $row["register_date"] . '<br>Email: ' . $row["email"] . '<br>Phone: ' . $row["contact"] . '</p>
                                                         </div>
                                                         <div class="col-lg-4 list-controls d-flex">
-                                                            <a class="custom-btn mail-btn mr-2 flex-grow-1 option-btn d-inline-flex" href="mailto:' . $row["email"] . '"><span class="material-icons mr-3 mail-icon">email</span>E-mail</a>
-                                                            <a class="custom-btn mr-2 material-icons option-btn" href="./admin_edit.php?id=' . $row["id"] . '">edit</a>
-                                                            <a class="custom-btn danger material-icons option-btn" href="./admin_delete.php?id=' . $row["id"] . '">delete</a>
+                                                            <a class="custom-btn mail-btn mr-2 flex-grow-1 option-btn d-inline-flex" href="mailto:' . $row["email"] . '"><span class="material-icons mr-3 inline-icon">email</span>E-mail</a>
+                                                            <a class="custom-btn mr-2 option-btn" href="./admin_edit.php?id=' . $row["id"] . '"><span class="material-icons inline-icon">edit</span></a>
+                                                            <a class="custom-btn danger option-btn" href="./admin_delete.php?id=' . $row["id"] . '"><span class="material-icons inline-icon">delete</span></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -208,8 +208,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div>  
     </div>
     <footer class="my-5">
         <p>Innovate Training - 2021</p>

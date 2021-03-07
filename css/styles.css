@@ -226,13 +226,14 @@ footer a:hover {
     color: white;
 }
 
-.mail-icon {
+.inline-icon {
     padding: 0.15rem 0rem;
 }
 
 .danger,
 .danger:hover,
-.logout {
+.logout,
+.logout:hover {
     background-color: red;
     color: white;
 }
