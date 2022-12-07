@@ -70,7 +70,7 @@
         <script src="./js/admin.js"></script>
         <script src="./js/vaildation.js"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Innovate Training - Admin (Edit Registant)</title>
+        <title>Innovate Training - Admin (Editing Registant)</title>
     </head>
 
     <body>
